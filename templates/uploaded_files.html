@@ -1,0 +1,76 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        crossorigin="anonymous">
+    <title>File Uploaded</title>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body>
+
+	<div class="uploaded-file" style="margin-top: 100px; margin-left: 40px;">
+		<button> 
+			<a style="text-decoration: none;" href="{% url 'index' %}"> File Upload </a>
+		</button>
+		
+	
+	</div>
+
+    <div class="col-lg-6 col-md-6" style="margin: 100px auto; display: block;">
+		<div class="uploaded-files"> </div>
+
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+		header = {
+			"Authorization": "Bearer " + localStorage.getItem("access_token")
+		}
+		debugger
+		$.ajax({
+			url: window.location.origin + '/fileUploader/file-upload/',
+			type: 'GET', 
+			headers: header,
+			dataType: 'json',
+			success: function(data) {
+				debugger
+				console.log('AJAX call successful:', data);
+				book_data = data
+				$('.uploaded-files').empty();
+				if(data.length ==0){
+					$('.uploaded-files').append($('<p> File is not uploaded </p>'));
+				}
+				else{
+					$('.uploaded-files').append($('<p>Show Files</p>'));
+					// Loop through the data and create div elements
+					for (var i = 0; i < data.length; i++) {
+						var fileData = data[i];
+						// Create a div element for each item in the data
+						var fileDiv = $('<div class="uploaded-file" >');
+						fileDiv.css('border', '10px solid #ccc');
+						var anchorTag = $('<a>').attr('href', window.location.origin +"/" +fileData.upload).text(fileData.file_name); 
+						fileDiv.append(anchorTag);
+						$('.uploaded-files').append(fileDiv);
+					}
+			    }
+			},
+			error: function(xhr, status, error) {
+				debugger
+				console.log(xhr)
+				window.location.href = window.location.origin + "/account/"
+				console.error('AJAX call failed:', status, error);
+			}
+		});
+	
+
+
+
+	</script>
+</body>
+</html>
