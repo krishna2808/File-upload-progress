@@ -2,15 +2,15 @@
 
 
 
-(1) Create virtual environment.
-$ python3.11 -m venv venv
-$ source venv/bin/activate
+(1) Create virtual environment. <br>
+$ python3.11 -m venv venv <br>
+$ source venv/bin/activate <br>
 
-(2) Clone project from github
-$  git clone https://github.com/krishna2808/file-upload-progress.git
+(2) Clone project from github  <br>
+$  git clone https://github.com/krishna2808/file-upload-progress.git <br>
 
-(3) you can install all packages from requirements.txt after activated python virtual environment.
-$ pip install -r requirements.txt
+(3) you can install all packages from requirements.txt after activated python virtual environment. <br>
+$ pip install -r requirements.txt  <br>
 
-(4) last step to run project.
-$ python manage.py runserver
+(4) last step to run project.  <br>
+$ python manage.py runserver  <br>
