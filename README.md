@@ -37,7 +37,7 @@ Before you begin, ensure you have the following installed:
 2. **Install dependencies:**
 
     ```bash
-    pip install -r requirments.txt
+    pip install -r requirements.txt
     ```
 
 ### Running the Application
